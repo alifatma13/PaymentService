@@ -1,7 +1,7 @@
-package com.example.paymentservice.controllers;
-
+package com.example.paymentservice.controller;
 
 import com.example.paymentservice.dtos.InitiatePaymentRequestDto;
+import com.example.paymentservice.dtos.InitiatePaymentResponseDto;
 import com.example.paymentservice.services.PaymentService;
 import com.razorpay.RazorpayException;
 import com.stripe.exception.StripeException;
@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/payments")
 public class PaymentController {
-    private PaymentService paymentService;
 
-    public PaymentController(PaymentService paymentService) {
+    PaymentService paymentService;
+
+    public  PaymentController(PaymentService paymentService){
         this.paymentService = paymentService;
     }
 

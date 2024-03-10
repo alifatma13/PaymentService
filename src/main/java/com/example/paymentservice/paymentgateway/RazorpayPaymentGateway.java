@@ -7,14 +7,14 @@ import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;
 import org.springframework.stereotype.Service;
 
-@Service
-public class RazorpayPaymentGateway implements PaymentGateway {
-    private RazorpayClient razorpayClient;
+@Service("RazorPayPaymentGateway")
+public class RazorPayPaymentGateway implements PaymentGateway{
 
-    public RazorpayPaymentGateway(RazorpayClient razorpayClient) {
+    RazorpayClient razorpayClient;
+
+    public  RazorPayPaymentGateway(RazorpayClient razorpayClient){
         this.razorpayClient = razorpayClient;
     }
-
     @Override
     public String generatePaymentLink(String orderId, Long amount, String phoneNumber, String email) throws RazorpayException {
         //RazorpayClient razorpay = new RazorpayClient("[YOUR_KEY_ID]", "[YOUR_KEY_SECRET]");
@@ -23,12 +23,12 @@ public class RazorpayPaymentGateway implements PaymentGateway {
         paymentLinkRequest.put("currency","INR");
         paymentLinkRequest.put("accept_partial",false);
         //paymentLinkRequest.put("first_min_partial_amount",100);
-        paymentLinkRequest.put("expire_by",1706117456);
+        paymentLinkRequest.put("expire_by",1709983632);
         paymentLinkRequest.put("reference_id",orderId);
-        paymentLinkRequest.put("description","Payment for class on 24th Jan");
+        paymentLinkRequest.put("description","Payment for policy no #23456");
         JSONObject customer = new JSONObject();
         customer.put("name",phoneNumber);
-        customer.put("contact","Deepak Kasera");
+        customer.put("contact","Fatma Ali");
         customer.put("email",email);
         paymentLinkRequest.put("customer",customer);
         JSONObject notify = new JSONObject();
